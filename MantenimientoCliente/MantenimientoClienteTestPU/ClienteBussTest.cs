@@ -35,7 +35,7 @@ namespace MantenimientoClienteTestPU
             Cliente cliente = new Cliente();
             cliente.Nombre = "ClienteInsertar";
             cliente.Apellido = "ClienteApellidoa";
-            cliente.DNI = "1234588855";
+            cliente.DNI = "12345888";
             cliente.Edad = 20;
             cliente.Sexo = "Masculino";
             cliente.Nivel_Estudio = "Universitario";
@@ -72,7 +72,13 @@ namespace MantenimientoClienteTestPU
         public void TestObtenerClienteInorrecto()
         {
             Cliente cliente = new Cliente();
-
+            cliente.Nombre = "ClienteTest";
+            cliente.Apellido = "ClienteApellido";
+            cliente.DNI = "12345678";
+            cliente.Edad = 20;
+            cliente.Sexo = "Masculino";
+            cliente.Nivel_Estudio = "Universitario";
+            cliente.Telefono = "123456788";
             Cliente obtener;
 
             ClienteBuss business = new ClienteBuss();
@@ -124,7 +130,7 @@ namespace MantenimientoClienteTestPU
 
             clienteTest = business.Insertar(cliente);
             cliente.ClienteId = clienteTest.ClienteId;
-            cliente.Nombre = "TestActualizar201222222222222222222222222222222222222222222222222222222222222";
+            cliente.Nombre = "TestActualizar20122";
             business.Actualizar(cliente);
             obtener = business.Obtener(clienteTest.ClienteId);
             business.Eliminar(cliente);
@@ -156,9 +162,16 @@ namespace MantenimientoClienteTestPU
         {
             Cliente cliente = new Cliente();
             List<Cliente> lista = null;
+            cliente.Nombre = "ClienteTestListar";
+            cliente.Apellido = "ClienteApellido";
+            cliente.DNI = "12345678";
+            cliente.Edad = 20;
+            cliente.Sexo = "Masculino";
+            cliente.Nivel_Estudio = "Universitario";
+            cliente.Telefono = "123456788"; 
             
             ClienteBuss business = new ClienteBuss();
-
+            clienteTest = business.Insertar(cliente);
             lista = business.Listar();
             business.Eliminar(cliente);
             Assert.IsNotNull(lista);
@@ -188,7 +201,13 @@ namespace MantenimientoClienteTestPU
         {
             Cliente cliente = new Cliente();
             Cliente obtener;
-            
+            cliente.Nombre = "ClienteInsertar";
+            cliente.Apellido = "ClienteApellidoa";
+            cliente.DNI = "12345888";
+            cliente.Edad = 21;
+            cliente.Sexo = "Masculino";
+            cliente.Nivel_Estudio = "Universitario";
+            cliente.Telefono = "123458888";
             ClienteBuss business = new ClienteBuss();
 
             clienteTest = business.Insertar(cliente);
@@ -234,6 +253,7 @@ namespace MantenimientoClienteTestPU
 
             ClienteBuss business = new ClienteBuss();
             clienteTest = business.Insertar(cliente);
+            business.Eliminar(cliente);
             obtener = business.Obtener(clienteTest.ClienteId);
             clienteTest.ClienteId = 0;
             Assert.IsNull(obtener);
